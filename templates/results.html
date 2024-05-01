@@ -1,0 +1,68 @@
+<!--2024 Goat Database Project-->
+<!--Konrad Wnorowski, Nicholas Merritt, Varun Pawar-->
+
+<html>
+    <head>
+        <!--Page information-->
+        <title>Search Query Results</title>
+    </head>
+        <!--CSS code to make the web page look more appealing-->
+    <style>
+        body {
+            font-family:'Arial', sans-serif;
+            background-color: aqua;
+            margin: 0;
+            padding: 20px;
+        }
+    
+        tr:nth-of-type(2n) {
+            border:1px solid black;
+            background-color: rgba(150, 150, 150, 0.5);
+        }
+
+        td{
+            padding: 8px 8px;
+            border: 1px solid black;
+        }
+
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+            width: 80%;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            font-size: 40px;
+        }
+    </style>
+
+    <body>
+        {% if rows|length > 0 %}
+        <table class = "center">
+            <!-- column header for loop in jinja template -->
+            <thead>
+                <tr>
+                {%for head in heads%}
+                    <th>{{head}}</th>
+                {%endfor%}
+                </tr>
+            </thead>
+            <!-- nested for loops in jinja template -->
+            <tbody>
+            {%for row in rows%}
+                <tr>
+                {%for col in row%}
+                    <td>{{col}}</td>
+                {%endfor%}
+                </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+        <!--Check if the user input (for the first query) was invalid. If so, then print "Tag not found"-->
+        {% else %}
+        <p class = "error">Tag not found</p>
+        {% endif %}
+    </body>
+</html>

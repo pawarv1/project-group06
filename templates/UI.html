@@ -1,0 +1,126 @@
+<!--2024 Goat Database Project-->
+<!--Konrad Wnorowski, Nicholas Merritt, Varun Pawar-->
+
+<!DOCTYPE html>
+<html lan = "en">
+<head>
+    <!--Page information-->
+    <title>Goat Database GUI</title>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "wideth=device-width, initial-scale=1.0">
+    <!--CSS code to make the web page look more appealing-->
+    <style>
+        body {
+            font-family:'Arial', sans-serif;
+            background-color: aqua;
+            margin: 0;
+            padding: 20px;
+        }
+
+        section {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius:  8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: black;
+            font-size: 50px;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: black;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        input[type="submit"], button {
+            background-color:chocolate;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4x 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover, button:hover {
+            background-color: black;
+        }
+
+        p {
+            font-size: 16px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            div {
+                width: calc(100% - 40px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Goat Database</h1>
+    <section>
+        <!--First query implemented using a form-->
+        <div>
+            <h2>Search for all the kids of your goat's dam</h2>
+            <p>Enter the tag of a goat to find the goats related to its dam below:</p>
+        </div>
+        <div>
+            <form action = "/SearchTag" method="POST">
+                <input type = "text" name = "tag"><br><br>
+                <input type = "submit" value = "Enter"><br><br>
+            </form>
+        </div>
+    </section>
+    <section>
+        <!--Second query implemented using a form-->
+        <div>
+            <h2>Search by quality group</h2>
+            <p>Enter the overall quality of the goats you want to search below:</p>
+        </div>
+        <div>
+            <form action = "/SearchGroup" method="POST">
+                <select name = "group" class = "input">
+                    <option>Low</option>
+                    <option>Middle</option>
+                    <option>High</option>
+                </select><br><br>
+                <input type = "submit" value = "Enter"><br><br><br><br>
+            </form>
+        </div>
+    </section>
+    <div>
+        <!--Help button to give users more information about how to use the website-->
+        <button type = "button" onclick = "getHelp()">Help</button>       
+        <p id = "helpSection" hidden = "hidden">The first box returns all the goats which have the same dam as the goat whose tag is inputted, to help identify dams of a certain point value. The dam's tag can also be inputted, to get its total points.The second box returns the goats that fall into one of the three categories based on their point values, and the number of goats sold in each range, to help identify which quality type goats sell better.</p><br><br>
+        <!--Javascript code to make the help button work-->
+        <script>
+            function getHelp() {
+                let h = document.getElementById("helpSection");
+                
+                if (h.hasAttribute('hidden')) {
+                    h.removeAttribute("hidden");
+                }else {
+                    h.setAttribute("hidden", "hidden");
+                }
+            }
+        </script>
+    </div>
+    <div>
+        <p>2024 Goat Database Project by Konrad Wnorowski, Nicholas Merritt, Varun Pawar </p>
+    </div>
+</body>
+</html>
